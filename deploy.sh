@@ -115,6 +115,7 @@ npm install typings -g --silent
 # 3. Install npm packages
 if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
   cd "$DEPLOYMENT_TARGET"
+  eval $NPM_CMD install typings -g --silent
   cd public
   eval $NPM_CMD install --production
   cd ..
