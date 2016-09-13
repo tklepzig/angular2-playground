@@ -122,6 +122,7 @@ if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
   cd ..
   cd server
   eval $NPM_CMD install --production
+  cd public
   tsc
   exitWithMessageOnError "npm failed"
   cd - > /dev/null
