@@ -119,11 +119,10 @@ if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
   eval $NPM_CMD install typescript -g --silent
   cd public
   eval $NPM_CMD install --production
+  tsc
   cd ..
   cd server
   eval $NPM_CMD install --production
-  cd public
-  tsc
   exitWithMessageOnError "npm failed"
   cd - > /dev/null
 fi
