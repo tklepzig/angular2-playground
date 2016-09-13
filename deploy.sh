@@ -109,6 +109,9 @@ fi
 # 2. Select node version
 selectNodeVersion
 
+npm install typings -g --silent
+
+
 # 3. Install npm packages
 if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
   cd "$DEPLOYMENT_TARGET"
