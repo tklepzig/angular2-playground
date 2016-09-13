@@ -116,14 +116,17 @@ npm install typings -g --silent
 if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
   cd "$DEPLOYMENT_TARGET"
   eval $NPM_CMD install typings -g --silent
+  eval $NPM_CMD install typescript -g --silent
   cd public
   eval $NPM_CMD install --production
   cd ..
   cd server
   eval $NPM_CMD install --production
+  tsc
   exitWithMessageOnError "npm failed"
   cd - > /dev/null
 fi
+
 
 ##################################################################################################################################
 
