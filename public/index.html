@@ -3,6 +3,14 @@
     <title>Angular 2 QuickStart</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="node_modules/flex-layout/dist/flex-layout.min.css">
+    <style>
+      body
+      {
+        margin: 0;
+        font-family: 'Segoe UI',Arial;
+      }
+    </style>
     <!-- 1. Load libraries -->
      <!-- Polyfill(s) for older browsers -->
     <script src="node_modules/core-js/client/shim.min.js"></script>
@@ -16,7 +24,9 @@
     </script>
   </head>
   <!-- 3. Display the application -->
-  <body>
-    <my-app>Loading...</my-app>
+  <body class="layout-v layout-fill">
+    <app>
+      <h1 style="height: 100%; margin: 0; font-size: 60pt; font-weight: lighter;" class="layout-v align-h-center align-v-center">Loading...</h1>
+    </app>
   </body>
 </html>
