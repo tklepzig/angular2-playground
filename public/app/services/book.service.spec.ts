@@ -11,4 +11,12 @@ describe('BookService', () => {
         expect(books.length).toBe(3);
         done();
     });
+
+    it('addBook()...', done => {
+        done();
+    });
+
+    it('removeBook()...', done => {
+        done();
+    });
 });

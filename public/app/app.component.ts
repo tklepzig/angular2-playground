@@ -1,17 +1,8 @@
 import { Component } from '@angular/core';
-import { Book } from './models/book';
-import { BookService } from './services/book.service';
+import { BookListComponent } from './bookList/bookList.component';
 
 @Component({
   selector: 'app',
-  templateUrl: 'app/app.tmpl.html',
-  providers: [BookService]
+  templateUrl: 'app/app.tmpl.html'
 })
-export class AppComponent {
-
-  books: Book[];
-
-  constructor(private bookService: BookService) {
-    this.books = bookService.getBooks();
-  }
-}
+export class AppComponent {}
