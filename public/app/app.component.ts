@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
-import { Book } from './book';
+import { Book } from './models/book';
+import { BookService } from './services/book.service';
 
 @Component({
   selector: 'app',
-  templateUrl: 'app/app.tmpl.html'
+  templateUrl: 'app/app.tmpl.html',
+  providers: [BookService]
 })
 export class AppComponent {
 
   books: Book[];
 
-  constructor() {
-    this.books = [];
-    this.books.push(<Book>{ name: "Book1" });
-    this.books.push(<Book>{ name: "Book2" });
-    this.books.push(<Book>{ name: "Book3" });
+  constructor(private bookService: BookService) {
+    this.books = bookService.getBooks();
   }
 }
