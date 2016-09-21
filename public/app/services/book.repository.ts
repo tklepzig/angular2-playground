@@ -31,10 +31,8 @@ export class BookRepository {
     }
 
     addBook(isbn: string) {
-        //http://isbndb.com/api/v2/json/DAEM28V1/book/9780137081073
-
         return new Promise((resolve, reject) => {
-            this.http.get("http://localhost:51112/test")
+            this.http.get("http://localhost:51112/addBook/" + isbn)
                 .map((response: Response) => <Book>response.json())
                 .subscribe(book => {
                     this.mock.push(book);

@@ -19,16 +19,20 @@ app.get('/', function (request, response) {
   response.sendFile(path.resolve(__dirname + "/../public" + '/index.html'));
 });
 
-app.get('/test', function (request, response) {
-  response.json({ title: 'Hello!', id: "42" });
+app.get('/addBook/:isbn', function (request, response) {
+  http.get('http://isbndb.com/api/v2/json/DAEM28V1/book/' + request.params.isbn, function (res) {
+    var body = '';
+    res.on('data', function (d) {
+      body += d;
+    });
+    res.on('end', function () {
+      var parsed = JSON.parse(body);
+      var title = parsed.data[0].title;
+      response.json({ title: title, id: request.params.isbn });
+    });
+  }).end();
 });
 
 httpServer.listen(port, function () {
   console.log('listening on *:' + port);
 });
-
-// http.get('http://isbndb.com/api/v2/json/DAEM28V1/book/9780137081073', function (res) {
-//   res.on('data', function (data) {
-//     console.log(JSON.parse(data).data[0].title);
-//   });
-// }).end();

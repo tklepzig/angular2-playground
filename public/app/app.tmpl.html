@@ -3,8 +3,8 @@
     <div class="layout-h align-h-space-around">
         <book-list></book-list>
         <div class="layout-h align-v-start">
-            <input type="text">
-            <button (click)="addBook('12345678')" style="margin-left: 4px;">Add</button>
+            <input #isbn type="text">
+            <button (click)="addBook(isbn.value)" style="margin-left: 4px;">Add</button>
         </div>
     </div>
 </div>
