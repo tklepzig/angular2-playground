@@ -10,4 +10,12 @@ export class BookService {
     getBooks(): Book[] {
         return this.bookRepository.getBooks();
     }
+
+    removeBook(bookId: string): void {
+        this.bookRepository.removeBook(bookId);
+    }
+
+    addBook(isbn: string) {
+        this.bookRepository.addBook(isbn);
+    }
 }

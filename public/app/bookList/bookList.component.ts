@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { Book } from '../models/book';
 import { BookService } from '../services/book.service';
-import { BookRepository } from '../services/book.repository';
 
 @Component({
   selector: 'book-list',
   templateUrl: 'app/bookList/bookList.tmpl.html',
-  providers: [BookService, BookRepository]
+  providers: [BookService]
 })
 export class BookListComponent {
 
@@ -15,4 +14,8 @@ export class BookListComponent {
   constructor(private bookService: BookService) {
     this.books = bookService.getBooks();
   }
+
+  removeBook(bookId: string) {
+    this.bookService.removeBook(bookId);
+  }  
 }

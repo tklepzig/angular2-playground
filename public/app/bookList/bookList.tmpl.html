@@ -1,5 +1,5 @@
 <ul style="margin: 0; list-style: none;">
     <li *ngFor="let book of books">
-        {{book.name}} <button>Remove</button>
+        {{book.name}} <button (click)="removeBook(book.id)">Remove</button>
     </li>
 </ul>
