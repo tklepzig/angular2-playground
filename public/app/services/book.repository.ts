@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
 import { Book } from '../models/book';
 
 @Injectable()
@@ -6,10 +7,10 @@ export class BookRepository {
 
     mock: Book[] = [];
 
-    constructor() {
-        this.mock.push(<Book>{ name: "Book1", id: "1" });
-        this.mock.push(<Book>{ name: "Book2", id: "2" });
-        this.mock.push(<Book>{ name: "Book3", id: "3" });
+    constructor(private http: Http) {
+        this.mock.push(<Book>{ title: "Book1", id: "1" });
+        this.mock.push(<Book>{ title: "Book2", id: "2" });
+        this.mock.push(<Book>{ title: "Book3", id: "3" });
     }
 
     getBooks(): Book[] {
@@ -30,12 +31,20 @@ export class BookRepository {
     }
 
     addBook(isbn: string) {
-
-        // return Promise.resolve();
-        //TODO: use promise for calling server
         //http://isbndb.com/api/v2/json/DAEM28V1/book/9780137081073
 
-        // this.mock.push();
+        return new Promise((resolve, reject) => {
+            this.http.get("http://localhost:51112/test")
+                .map((response: Response) => <Book>response.json())
+                .subscribe(book => {
+                    this.mock.push(book);
+                    resolve(book);
+                }
+                , error => {
+                    console.log(error); reject(error);
+                });
+        });
+
     }
 }
 

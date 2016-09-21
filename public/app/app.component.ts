@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BookListComponent } from './bookList/bookList.component';
 import { BookService } from './services/book.service';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app',

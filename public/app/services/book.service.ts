@@ -16,6 +16,6 @@ export class BookService {
     }
 
     addBook(isbn: string) {
-        this.bookRepository.addBook(isbn);
+        return this.bookRepository.addBook(isbn);
     }
 }
