@@ -1,44 +1,69 @@
-import { Book } from '../models/book';
-import { BookService } from './book.service';
-import { BookRepository } from './book.repository';
-import { Http } from '@angular/http';
 
-//TODO: review whole testing, see https://angular.io/docs/ts/latest/guide/testing.html#!#atp-api
+import {TestBed, inject} from '@angular/core/testing';
+import {BookService} from '../services/book.service';
+import {BookRepository} from '../services/book.repository';
+import { Book } from '../models/book';
+
+class BookRepositoryStub {
+
+  books: Book[];
+
+  getBooks(): Book[] {
+    //return a clone
+    return this.books.slice(0);
+  }
+}
 
 describe('BookService', () => {
 
-    // let bookRepositoryStub = <BookRepository>{ getBooks: (): Book[] => [] }
-    // let bookService = new BookService(new BookRepository());
+  let booksTestData: Book[] = [];
+  booksTestData.push(<Book>{ title: "Book1", id: "1" });
+  booksTestData.push(<Book>{ title: "Book2", id: "2" });
+  booksTestData.push(<Book>{ title: "Book3", id: "3" });
 
-    // it('getBooks() returns a list of books', done => {
-    //     let books = bookService.getBooks();
+  let bookRepository;
+  let bookService;
 
-    //     expect(books.length).toBeDefined();
-    //     expect(books.length).toBe(3);
-    //     done();
-    // });
+  beforeEach(() => {
+    TestBed.configureTestingModule({ providers: [{ provide: BookRepository, useClass: BookRepositoryStub }] });
 
-    // it('addBook()...', done => {
-    //     let books = bookService.getBooks();
-
-    //     let lengthBefore = books.length;
-    //     bookService.addBook("123456").then(() => {
-    //         let lengthAfter = books.length;
-    //         expect(lengthBefore + 1).toBe(lengthAfter);
-    //         done();
-    //     });
+    bookRepository = TestBed.get(BookRepository);
+    bookRepository.books = booksTestData;
+    bookService = new BookService(bookRepository);
+  });
 
 
-    // });
+  it('getBooks() returns a list of books', done => {
+    let books = bookService.getBooks();
 
-    // it('removeBook()...', done => {
-    //     let books = bookService.getBooks();
+    expect(books).toBeDefined();
+    expect(books.length).toBeDefined();
+    expect(books).toEqual(booksTestData);
 
-    //     let lengthBefore = books.length;
-    //     bookService.removeBook("2");
-    //     let lengthAfter = books.length;
+    done();
+  });
 
-    //     expect(lengthBefore - 1).toBe(lengthAfter);
-    //     done();
-    // });
+  // it('addBook()...', done => {
+  //     let books = bookService.getBooks();
+
+  //     let lengthBefore = books.length;
+  //     bookService.addBook("123456").then(() => {
+  //         let lengthAfter = books.length;
+  //         expect(lengthBefore + 1).toBe(lengthAfter);
+  //         done();
+  //     });
+
+
+  // });
+
+  // it('removeBook()...', done => {
+  //     let books = bookService.getBooks();
+
+  //     let lengthBefore = books.length;
+  //     bookService.removeBook("2");
+  //     let lengthAfter = books.length;
+
+  //     expect(lengthBefore - 1).toBe(lengthAfter);
+  //     done();
+  // });
 });

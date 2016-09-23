@@ -17,7 +17,7 @@ export class BookRepository {
         return this.mock;
     }
 
-    removeBook(bookId: string) {
+    removeBook(bookId: string): void {
         //TODO: use promise for calling server
         for (var key in this.mock) {
             if (this.mock.hasOwnProperty(key)) {
@@ -30,7 +30,7 @@ export class BookRepository {
         }
     }
 
-    addBook(isbn: string) {
+    addBook(isbn: string): Promise<Book> {
         return new Promise((resolve, reject) => {
             this.http.get("http://localhost:51112/addBook/" + isbn)
                 .map((response: Response) => <Book>response.json())

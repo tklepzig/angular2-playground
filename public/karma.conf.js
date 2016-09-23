@@ -11,7 +11,7 @@ module.exports = function (config) {
 		plugins: [
 			require('karma-jasmine'),
 			require('karma-chrome-launcher'),
-			require('karma-htmlfile-reporter')
+			require('karma-verbose-reporter')
 		],
 
 		files: [
@@ -68,18 +68,7 @@ module.exports = function (config) {
 
 		exclude: [],
 		preprocessors: {},
-		reporters: ['progress', 'html'],
-
-		// HtmlReporter configuration
-		htmlReporter: {
-			// Open this file to see results in browser
-			outputFile: '_test-output/tests.html',
-
-			// Optional
-			pageTitle: 'Unit Tests',
-			subPageTitle: __dirname
-		},
-
+		reporters: ['verbose'],
 		port: 9876,
 		colors: true,
 		logLevel: config.LOG_INFO,
