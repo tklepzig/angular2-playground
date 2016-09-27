@@ -12,10 +12,12 @@ export class BookListComponent {
   books: Book[];
 
   constructor(private bookService: BookService) {
-    this.books = bookService.getBooks();
+    bookService.getBooks().then(books => this.books = books);
   }
 
   removeBook(bookId: string) {
-    this.bookService.removeBook(bookId);
-  }  
+    this.bookService.removeBook(bookId).then(() => {
+      this.bookService.getBooks().then(books => this.books = books);
+    });
+  }
 }

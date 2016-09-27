@@ -7,15 +7,15 @@ export class BookService {
     constructor(private bookRepository: BookRepository) {
     }
 
-    getBooks(): Book[] {
+    getBooks(): Promise<Book[]> {
         return this.bookRepository.getBooks();
     }
 
-    removeBook(bookId: string): void {
-        this.bookRepository.removeBook(bookId);
+    removeBook(bookId: string): Promise<Book> {
+        return this.bookRepository.removeBook(bookId);
     }
 
-    addBook(isbn: string) {
+    addBook(isbn: string): Promise<Book> {
         return this.bookRepository.addBook(isbn);
     }
 }
