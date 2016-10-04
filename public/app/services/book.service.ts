@@ -11,6 +11,10 @@ export class BookService {
         return this.bookRepository.getBooks();
     }
 
+    getBook(bookId: string): Promise<Book> {
+        return this.bookRepository.getBook(bookId);
+    }
+
     removeBook(bookId: string): Promise<Book> {
         return this.bookRepository.removeBook(bookId);
     }
