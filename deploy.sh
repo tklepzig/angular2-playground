@@ -31,6 +31,8 @@ SCRIPT_DIR="${SCRIPT_DIR%/*}"
 ARTIFACTS=$SCRIPT_DIR/../artifacts
 KUDU_SYNC_CMD=${KUDU_SYNC_CMD//\"}
 
+DEPLOYMENT_SOURCE=$DEPLOYMENT_SOURCE/dist
+
 if [[ ! -n "$DEPLOYMENT_SOURCE" ]]; then
   DEPLOYMENT_SOURCE=$SCRIPT_DIR
 fi
@@ -109,19 +111,10 @@ fi
 # 2. Select node version
 selectNodeVersion
 
-npm install typings -g --silent
-
 
 # 3. Install npm packages
 if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
   cd "$DEPLOYMENT_TARGET"
-  eval $NPM_CMD install typings -g --silent
-  eval $NPM_CMD install typescript -g --silent
-  cd public
-  eval $NPM_CMD install --production
-  tsc
-  cd ..
-  cd server
   eval $NPM_CMD install --production
   exitWithMessageOnError "npm failed"
   cd - > /dev/null
