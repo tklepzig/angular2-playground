@@ -4,10 +4,9 @@
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
-    "dev": "npm run build-dev && node dist/server/index.js",    
-    "start-watch": "ng serve",    
+    "dev": "nodemon server/index.js dev & ng serve &",    
     "build-dev": "ng build && cp -R server dist/ && cp package.json dist/",
-    "build-prod": "ng build -prod && cp -R server dist/ && cp package.json dist/",
+    "build-prod": "ng build --prod && cp -R server dist/ && cp package.json dist/",
     "start": "node server/index.js",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
