@@ -36,8 +36,14 @@ app.put('/book/:isbn', function (request, response) {
     });
     res.on('end', function () {
       var parsed = JSON.parse(body);
-      var title = parsed.data[0].title;
-      response.json({ title: title, id: isbn });
+
+      if (typeof parsed !== 'undefined' && typeof parsed.data !== 'undefined' && parsed.data.length > 0) {
+        var title = parsed.data[0].title;
+        response.json({ title: title, id: isbn });
+      }
+      else {
+        response.json({ title: 'Nix gefunden', id: isbn });
+      }
     });
   }).end();
 });

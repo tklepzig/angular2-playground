@@ -11,7 +11,7 @@ export class BookRepository {
 
     getBooks(): Promise<Book[]> {
         return new Promise((resolve, reject) => {
-            this.http.get("http://localhost:51112/books")
+            this.http.get("/books")
                 .map((response: Response) => <Book[]>response.json())
                 .subscribe(books => {
                     resolve(books);
@@ -25,7 +25,7 @@ export class BookRepository {
 
     getBook(bookId: string): Promise<Book> {
         return new Promise((resolve, reject) => {
-            this.http.get("http://localhost:51112/book/" + bookId)
+            this.http.get("/book/" + bookId)
                 .map((response: Response) => <Book>response.json())
                 .subscribe(book => {
                     resolve(book);
@@ -39,7 +39,7 @@ export class BookRepository {
 
     removeBook(bookId: string): Promise<Book> {
         return new Promise((resolve, reject) => {
-            this.http.delete("http://localhost:51112/book/" + bookId)
+            this.http.delete("/book/" + bookId)
                 .map((response: Response) => <Book>response.json())
                 .subscribe(book => {
                     console.dir(book);
@@ -54,7 +54,7 @@ export class BookRepository {
 
     addBook(isbn: string): Promise<Book> {
         return new Promise((resolve, reject) => {
-            this.http.put("http://localhost:51112/book/" + isbn, '')
+            this.http.put("/book/" + isbn, '')
                 .map((response: Response) => <Book>response.json())
                 .subscribe(book => {
                     resolve(book);

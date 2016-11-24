@@ -3,3 +3,8 @@
         {{book.title}} <button (click)="removeBook(book.id)">Remove</button>
     </li>
 </ul>
+
+<div class="layout-h align-v-start">
+    <input #isbn type="text">
+    <button (click)="addBook(isbn.value)" style="margin-left: 4px;">Add</button>
+</div>
