@@ -12,14 +12,20 @@ var app = express();
 var http = require('http')
 var httpServer = http.Server(app);
 var path = require('path');
+require('colors');
 
 if (environment !== 'prod') {
+    console.log('Development mode'.bold.green);
+    
     app.use(function (req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         next();
     });
+}
+else {
+    console.log('Production mode'.bold.red);
 }
 
 app.use('/', express.static(path.resolve(__dirname + "/../public")));

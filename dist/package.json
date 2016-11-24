@@ -4,7 +4,7 @@
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
-    "dev": "nodemon server/index.js dev & ng serve &",    
+    "dev": "nodemon server/index.js dev & ng serve &",
     "build-dev": "ng build && cp -R server dist/ && cp package.json dist/",
     "build-prod": "ng build --prod && cp -R server dist/ && cp package.json dist/",
     "start": "node server/index.js",
@@ -23,6 +23,7 @@
     "@angular/platform-browser": "^2.1.0",
     "@angular/platform-browser-dynamic": "^2.1.0",
     "@angular/router": "^3.1.0",
+    "colors": "^1.1.2",
     "core-js": "^2.4.1",
     "express": "^4.14.0",
     "rxjs": "5.0.0-beta.12",
